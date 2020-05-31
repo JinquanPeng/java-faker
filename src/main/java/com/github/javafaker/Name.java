@@ -2,7 +2,8 @@ package com.github.javafaker;
 
 import org.apache.commons.lang3.StringUtils;
 
-public class Name {
+public class
+Name {
     
     private final Faker faker;
 

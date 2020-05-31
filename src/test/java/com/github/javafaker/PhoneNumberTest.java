@@ -35,6 +35,35 @@ public class PhoneNumberTest extends AbstractFakerTest {
     }
 
     @Test
+    public void testPhoneNumber_regex_1() {
+        Faker faker = new Faker();
+        String number = faker.phoneNumber().phoneNumber("[2-4]#####");
+        assertThat(number, matchesRegularExpression("[2-4]\\d\\d\\d\\d\\d"));
+    }
+
+    @Test
+    public void testPhoneNumber_regex_2() {
+        Faker faker = new Faker();
+        String number = faker.phoneNumber().phoneNumber("[2-4][3-7]#####");
+        assertThat(number, matchesRegularExpression("[2-4][3-7]\\d\\d\\d\\d\\d"));
+    }
+
+    @Test
+    public void testCellPhone_regex_1() {
+        Faker faker = new Faker();
+        String number = faker.phoneNumber().cellPhone("[5-9]#-##-##");
+        assertThat(number, matchesRegularExpression("[5-9]\\d-\\d\\d-\\d\\d"));
+    }
+
+    @Test
+    public void testCellPhone_regex_2() {
+        Faker faker = new Faker();
+        String number = faker.phoneNumber().cellPhone("[3-7][7-9]-##-##");
+        assertThat(number, matchesRegularExpression("[3-7][7-9]-\\d\\d-\\d\\d"));
+    }
+
+
+    @Test
     public void testExtension() {
         assertThat(faker.phoneNumber().extension(), matchesRegularExpression("\\d{4}"));
     }

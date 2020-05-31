@@ -9,10 +9,12 @@ import static org.hamcrest.Matchers.not;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
+import com.github.javafaker.matchers.MatchesRegularExpression;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 
-public class LoremTest extends AbstractFakerTest {
+public class
+LoremTest extends AbstractFakerTest {
 
     @Test
     public void shouldCreateFixedLengthString() {
@@ -70,17 +72,21 @@ public class LoremTest extends AbstractFakerTest {
     @Test
     public void testCharactersMinimumMaximumLength() {
         assertThat(faker.lorem().characters(1, 10), matchesRegularExpression("[a-z\\d]{1,10}"));
+        assertThat(faker.lorem().characters(10,10), matchesRegularExpression("[a-z\\d]{10}"));
     }
 
     @Test
     public void testCharactersMinimumMaximumLengthIncludeUppercase() {
         assertThat(faker.lorem().characters(1, 10, true), matchesRegularExpression("[a-zA-Z\\d]{1,10}"));
+        assertThat(faker.lorem().characters(10, 10, true), matchesRegularExpression("[a-zA-Z\\d]{10}"));
     }
 
     @Test
     public void testCharactersMinimumMaximumLengthIncludeUppercaseIncludeDigit() {
         assertThat(faker.lorem().characters(1, 10, false, false), matchesRegularExpression("[a-zA-Z]{1,10}"));
+        assertThat(faker.lorem().characters(10, 10, false, false), matchesRegularExpression("[a-zA-Z]{10}"));
         assertThat(faker.lorem().characters(1, 10, true, true), matchesRegularExpression("[a-zA-Z\\d]{1,10}"));
+        assertThat(faker.lorem().characters(10, 10, true, true), matchesRegularExpression("[a-zA-Z\\d]{10}"));
     }
 
     @Test
